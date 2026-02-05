@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 // Markdown:
@@ -9,25 +9,28 @@ import { mdsvexOptions } from './mdsvex.options.js';
 const config = {
   extensions: ['.svelte', '.md'],
   preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
+  
   kit: {
+    // ✅ CORRECT CONFIG FOR GITHUB PAGES
     adapter: adapter({
-      // Use Node.js runtime for compatibility with @resvg/resvg-js
-      runtime: 'nodejs20.x',
-      // Split into regions for lower latency
-      regions: ['iad1'], // US East - adjust based on your audience
-      // Enable split to optimize function cold starts
-      split: true
+      pages: 'build',
+      assets: 'build',
+      fallback: '404.html',
+      precompress: false,
+      strict: true
     }),
+    
     alias: {
       '@': './src/*'
     },
+    
     prerender: {
       handleMissingId: 'warn',
       handleHttpError: 'warn',
-      // Crawl all links for prerendering
-      crawl: true
+      crawl: true,
+      entries: ['*']
     },
-    // Inline styles for faster first paint
+    
     inlineStyleThreshold: 5000
   }
 };
