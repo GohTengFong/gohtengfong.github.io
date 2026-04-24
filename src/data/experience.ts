@@ -2,7 +2,7 @@ import type { iExperience } from '@/types/experience.type';
 
 export const experienceData: iExperience[] = [
   {
-    role: 'Incoming Site Reliability Engineer',
+    role: 'Site Reliability Engineer',
     company: 'Citadel',
     companyUrl: 'https://www.citadel.com/',
     startDate: 'May 2026',
@@ -17,7 +17,7 @@ export const experienceData: iExperience[] = [
   },
   {
     role: 'Software Engineer',
-    company: 'Monetary Authority Singapore',
+    company: 'Monetary Authority of Singapore',
     companyUrl: 'https://www.mas.gov.sg/',
     startDate: 'May 2025',
     endDate: 'Aug 2025',
